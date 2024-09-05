@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: defaults-svc-poc
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/app_db
+    username: app_user
+    password: password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+# The property that decide what type of service implementation to execute
+rule:
+  type: drools
+  #type: custom
+  #type: code
+
+apil:
+  default-rule-configs:
+    -
+      ruleId: 1
+      origin: 100
+      sourceAttributeName: bankCd
+      targetAttributeName: bankCd
+      predicateJson: '{"operationType" : "EQUALS","value" : ["EMPTY", "NULL"]}'
+      functionJson: '{"functionType" : "ASSIGN_VALUE", "value" : "NA"}'
+    -
+      ruleId: 2
+      origin: 100
+      sourceAttributeName: vendorId
+      targetAttributeName: paymentMethod
+      predicateJson: '{"operationType" : "EQUALS","value" : ["V-123","V-234"]}'
+      functionJson: '{"functionType" : "ASSIGN_VALUE", "value" : "EFT"}'      

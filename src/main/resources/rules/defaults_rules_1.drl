@@ -1,0 +1,16 @@
+import com.hclt.pmk.defaults.models.InvoiceHeader;
+
+rule "Default Bank Cd if Empty or Null"
+when
+    invHeader:  InvoiceHeader( bankCd == "");
+then
+    invHeader.setBankCd("DRL");
+end;
+
+
+rule "Set Payment Method to EFT for customer ids V-123, V-234"
+when
+   invHeader: InvoiceHeader( vendorId =="V-123" || vendorId =="V-234" );
+then
+   invHeader.setPaymentMethod("EFT");
+end;

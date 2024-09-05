@@ -1,0 +1,4 @@
+{
+    "operationType" : "EQUALS",
+    "value" : ["EMPTY", "NULL"]
+}
